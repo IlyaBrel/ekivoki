@@ -23,9 +23,9 @@ CREATE TABLE `ek_card` (
   PRIMARY KEY (`id`),
   KEY `question_id` (`question_id`),
   KEY `topic_id` (`topic_id`),
-  CONSTRAINT `ek_card_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`),
-  CONSTRAINT `ek_card_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
-  CONSTRAINT `ek_card_ibfk_3` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`)
+  CONSTRAINT `ek_card_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `ek_topic` (`id`),
+  CONSTRAINT `ek_card_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `ek_question` (`id`),
+  CONSTRAINT `ek_card_ibfk_3` FOREIGN KEY (`topic_id`) REFERENCES `ek_topic` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -42,6 +42,15 @@ CREATE TABLE `ek_game` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `ek_question`;
+CREATE TABLE `ek_question` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 DROP TABLE IF EXISTS `ek_session`;
 CREATE TABLE `ek_session` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -51,21 +60,12 @@ CREATE TABLE `ek_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `question`;
-CREATE TABLE `question` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-DROP TABLE IF EXISTS `topic`;
-CREATE TABLE `topic` (
+DROP TABLE IF EXISTS `ek_topic`;
+CREATE TABLE `ek_topic` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- 2022-03-25 11:59:16
+-- 2022-03-27 18:31:37
