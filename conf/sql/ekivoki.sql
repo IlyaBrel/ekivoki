@@ -11,7 +11,7 @@ USE `ekivoki`;
 
 DROP TABLE IF EXISTS `ek_card`;
 CREATE TABLE `ek_card` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `topic_id` bigint(20) NOT NULL,
   `question_id` bigint(20) NOT NULL,
   `question_number` int(6) NOT NULL,
@@ -32,13 +32,11 @@ CREATE TABLE `ek_card` (
 DROP TABLE IF EXISTS `ek_game`;
 CREATE TABLE `ek_game` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `session_id` bigint(50) NOT NULL,
-  `card_id` int(20) NOT NULL,
+  `session_id` bigint(20) NOT NULL,
+  `card_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `session_id` (`session_id`),
-  KEY `card_id` (`card_id`),
-  CONSTRAINT `ek_game_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `ek_session` (`id`),
-  CONSTRAINT `ek_game_ibfk_2` FOREIGN KEY (`card_id`) REFERENCES `ek_card` (`id`)
+  CONSTRAINT `ek_game_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `ek_session` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -68,4 +66,4 @@ CREATE TABLE `ek_topic` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- 2022-03-27 19:30:31
+-- 2022-03-27 19:43:00
